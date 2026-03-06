@@ -3,6 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import warnings
+import kagglehub
+import os
 warnings.filterwarnings('ignore')
 
 from sklearn.model_selection import train_test_split
@@ -14,7 +16,8 @@ from imblearn.over_sampling import SMOTE
 
 # 1. Load Dataset
 # Assuming the file is in your current directory
-df = pd.read_csv('creditcard.csv')
+path = kagglehub.dataset_download("mlg-ulb/creditcardfraud")
+df = pd.read_csv(os.path.join(path, "creditcard.csv"))
 
 print("Dataset Shape:", df.shape)
 print("Class Distribution:\n", df['Class'].value_counts(normalize=True))
